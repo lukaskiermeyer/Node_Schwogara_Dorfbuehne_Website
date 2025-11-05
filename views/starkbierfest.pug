@@ -8,12 +8,17 @@ block content
                         h1 Starkbierfeste
                     .sort-container
                         .sort-dropdown
-                            button.sort-button Sortieren
-                            .sort-menu
-                                a(href="/starkbierfest?sort=year&order=asc") Jahr (aufsteigend)
-                                a(href="/starkbierfest?sort=year&order=desc") Jahr (absteigend)
+                            button.sort-button(type="button", aria-haspopup="true", aria-expanded="false")
+                                | Sortieren
+                                span.chev
+                                    svg(width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true")
+                                        path(d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+                            .sort-menu(role="menu")
+                                a(href="/starkbierfest?sort=year&order=asc" role="menuitem") Jahr (aufsteigend)
+                                a(href="/starkbierfest?sort=year&order=desc" role="menuitem") Jahr (absteigend)
 
-            if starkbierfeste
+
+    if starkbierfeste
                 .starkbier-grid
                     each fest in starkbierfeste
                         a.starkbier-card(href=`/starkbierfest/${fest.Jahr}`)
@@ -22,5 +27,5 @@ block content
                                 h2= fest.Jahr
                                 p= fest.Kurzbeschreibung
 
-            else
-                p Aktuell keine Starkbierfeste verfügbar
+    else
+        p Aktuell keine Starkbierfeste verfügbar
